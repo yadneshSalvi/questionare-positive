@@ -1,0 +1,283 @@
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Questionare</title>
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<script type="text/javascript" src="{% static 'script.js' %}"></script>
+</head>
+
+<body>
+	<div class="container">
+		<p class="info"> Welcome, this is a research on emotions and cognition. We thank you for your participation.</p>
+		<form method="post" novalidate>
+			{% csrf_token %}
+
+			<div class = "form-group">
+				{{form.name.label_tag}}
+
+				{% if form.is_bound %}
+					{% if form.name.errors %}
+						{% render_field form.name class="form-control is-invalid" %}
+						{% for error in form.name.errors %}
+							<div class="invalid-feedback">
+								{{ error }}
+							</div>
+						{% endfor %}
+					{% else %}
+						{% render_field form.name class="form-control is-valid" %}
+					{% endif %}
+				{% else %}
+					{% render_field form.name class="form-control" %}
+				{% endif %}
+
+				{% if form.name.help_text %}
+					<small class="form-text text-muted">
+						{{ form.name.help_text }}
+					</small>
+				{% endif %}
+			</div>
+
+			<div class = "form-group">
+				{{form.gender.label_tag}}
+
+				{% if form.is_bound %}
+					{% if form.gender.errors %}
+						{% render_field form.gender class="form-control is-invalid" %}
+						{% for error in form.gender.errors %}
+							<div class="invalid-feedback">
+								{{ error }}
+							</div>
+						{% endfor %}
+					{% else %}
+						{% render_field form.gender class="form-control is-valid" %}
+					{% endif %}
+				{% else %}
+					{% render_field form.gender class="form-control" %}
+				{% endif %}
+
+				{% if form.gender.help_text %}
+					<small class="form-text text-muted">
+						{{ form.gender.help_text }}
+					</small>
+				{% endif %}
+			</div>
+
+			<div class = "form-group">
+				{{form.age.label_tag}}
+
+				{% if form.is_bound %}
+					{% if form.age.errors %}
+						{% render_field form.age class="form-control is-invalid" %}
+						{% for error in form.age.errors %}
+							<div class="invalid-feedback">
+								{{ error }}
+							</div>
+						{% endfor %}
+					{% else %}
+						{% render_field form.age class="form-control is-valid" %}
+					{% endif %}
+				{% else %}
+					{% render_field form.age class="form-control" %}
+				{% endif %}
+
+				{% if form.age.help_text %}
+					<small class="form-text text-muted">
+						{{ form.age.help_text }}
+					</small>
+				{% endif %}
+			</div>
+
+			
+			<p class="info">Please use earphones (if possible) to watch the video below.</p>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/yLmd0100T9g?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+			<p class="info"> What is the best gift that you have ever recieved. (Feel free to write as much or as little as you wish.)</p>
+
+			<div class = "form-group">
+				{{form.experience.label_tag}}
+
+				{% if form.is_bound %}
+					{% if form.experience.errors %}
+						{% render_field form.experience class="form-control is-invalid" %}
+						{% for error in form.experience.errors %}
+							<div class="invalid-feedback">
+								{{ error }}
+							</div>
+						{% endfor %}
+					{% else %}
+						{% render_field form.experience class="form-control is-valid" %}
+					{% endif %}
+				{% else %}
+					{% render_field form.experience class="form-control" %}
+				{% endif %}
+
+				{% if form.experience.help_text %}
+					<small class="form-text text-muted">
+						{{ form.experience.help_text }}
+					</small>
+				{% endif %}
+			</div>
+
+			<p class="info"> Please select how happy are you are you feeling right now on the scale below. </p>
+
+			<div class = "form-group">
+				{{form.emotion_scale.label_tag}}
+
+				{% if form.is_bound %}
+					{% if form.emotion_scale.errors %}
+						{% render_field form.emotion_scale class="form-control is-invalid" %}
+						{% for error in form.emotion_scale.errors %}
+							<div class="invalid-feedback">
+								{{ error }}
+							</div>
+						{% endfor %}
+					{% else %}
+						{% render_field form.emotion_scale class="form-control is-valid" %}
+					{% endif %}
+				{% else %}
+					{% render_field form.emotion_scale class="form-control" %}
+				{% endif %}
+
+				{% if form.emotion_scale.help_text %}
+					<small class="form-text text-muted">
+						{{ form.emotion_scale.help_text }}
+					</small>
+				{% endif %}
+			</div>
+
+			<p class="info"> Q1: Which image amongst the options is most similar to the image shown below.
+			(On clicking view options the options will be shown for some time)</p>
+			<img src="{% static 'q1.png' %}" alt="question one image">
+			<button type="button" onclick="my_func()" class="btn btn-primary">View options</button>
+			<div id="options_1">
+				<img src="{% static 'a1.png' %}" alt="options for question one">
+			</div>
+
+
+			<div class = "form-group">
+				{{form.ans_1.label_tag}}
+
+				{% if form.is_bound %}
+					{% if form.ans_1.errors %}
+						{% render_field form.ans_1 class="form-control is-invalid" %}
+						{% for error in form.ans_1.errors %}
+							<div class="invalid-feedback">
+								{{ error }}
+							</div>
+						{% endfor %}
+					{% else %}
+						{% render_field form.ans_1 class="form-control is-valid" %}
+					{% endif %}
+				{% else %}
+					{% render_field form.ans_1 class="form-control" %}
+				{% endif %}
+
+				{% if form.ans_1.help_text %}
+					<small class="form-text text-muted">
+						{{ form.ans_1.help_text }}
+					</small>
+				{% endif %}
+			</div>
+
+			<p class="info">Q2: Two figures "A" and "B" will be shown to you for some time, identify which of the following relations is true for the circles in the center of the two images</p>
+			<button type="button" onclick="my_func_2()" class="btn btn-primary">View figures</button>
+			<div id="options_2">
+				<img src="{% static 'q2.png' %}" alt="Question 2 figure">
+			</div>
+
+
+			<div class = "form-group">
+				{{form.ans_2.label_tag}}
+
+				{% if form.is_bound %}
+					{% if form.ans_2.errors %}
+						{% render_field form.ans_2 class="form-control is-invalid" %}
+						{% for error in form.ans_2.errors %}
+							<div class="invalid-feedback">
+								{{ error }}
+							</div>
+						{% endfor %}
+					{% else %}
+						{% render_field form.ans_2 class="form-control is-valid" %}
+					{% endif %}
+				{% else %}
+					{% render_field form.ans_2 class="form-control" %}
+				{% endif %}
+
+				{% if form.ans_2.help_text %}
+					<small class="form-text text-muted">
+						{{ form.ans_2.help_text }}
+					</small>
+				{% endif %}
+			</div>
+
+			<p class="info">Q3: Identify the word in the following image</p>
+			<button type="button" onclick="my_func_3()" class="btn btn-primary">View image</button>
+			<div id="options_3">
+				<img src="{% static 'q3.png' %}" alt="Question 3 figure">
+			</div>
+
+
+			<div class = "form-group">
+				{{form.ans_3.label_tag}}
+
+				{% if form.is_bound %}
+					{% if form.ans_3.errors %}
+						{% render_field form.ans_3 class="form-control is-invalid" %}
+						{% for error in form.ans_3.errors %}
+							<div class="invalid-feedback">
+								{{ error }}
+							</div>
+						{% endfor %}
+					{% else %}
+						{% render_field form.ans_3 class="form-control is-valid" %}
+					{% endif %}
+				{% else %}
+					{% render_field form.ans_3 class="form-control" %}
+				{% endif %}
+
+				{% if form.ans_3.help_text %}
+					<small class="form-text text-muted">
+						{{ form.ans_3.help_text }}
+					</small>
+				{% endif %}
+			</div>
+
+			<p class="info">Q4: Guess the measure of angle A in the following figure. Please be as accurate as you can be.</p>
+			<div>
+				<img src="{% static 'q4.png' %}" alt="Question 3 figure">
+			</div>
+			<div class = "form-group">
+				{{form.ans_4.label_tag}}
+
+				{% if form.is_bound %}
+					{% if form.ans_4.errors %}
+						{% render_field form.ans_4 class="form-control is-invalid" %}
+						{% for error in form.ans_4.errors %}
+							<div class="invalid-feedback">
+								{{ error }}
+							</div>
+						{% endfor %}
+					{% else %}
+						{% render_field form.ans_4 class="form-control is-valid" %}
+					{% endif %}
+				{% else %}
+					{% render_field form.ans_4 class="form-control" %}
+				{% endif %}
+
+				{% if form.ans_4.help_text %}
+					<small class="form-text text-muted">
+						{{ form.ans_4.help_text }}
+					</small>
+				{% endif %}
+			</div>
+
+
+			<button type="submit" class="btn btn-success">Submit</button>
+		</form>
+</body>
+</html>
